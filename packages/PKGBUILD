@@ -11,7 +11,7 @@ license=('APACHE')
 
 pkgdesc='Helper routines for interfacing C libraries with ctypes that use OpenCV'
 source=('git+https://github.com/jsalzbergedu/swpycv.git#branch=cmake-and-clang')
-makedepends=('git' 'cmake' 'ninja' 'python2' 'opencv')
+makedepends=('git' 'cmake' 'ninja' 'python2' 'opencv2')
 md5sums=('SKIP')
 
 build() {

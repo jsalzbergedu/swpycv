@@ -19,10 +19,10 @@ set_target_properties(swpycv PROPERTIES VERSION ${SWPYCV_VERSION})
 set_target_properties(swpycv PROPERTIES SOVERSION ${SWPYCV_SOVERSION})
 
 add_custom_target(cp_lib ALL
-  COMMAND cp -f ${CMAKE_BINARY_DIR}/libswpycv.so ${CMAKE_CURRENT_SOURCE_DIR}/swpycv/
+  COMMAND cp -f ${CMAKE_BINARY_DIR}/libswpycv.so ${CMAKE_CURRENT_SOURCE_DIR}/swpycv/swpycv.so
   DEPENDS swpycv)
 
 add_custom_target(link_lib ALL
-  COMMAND ln -sf ${CMAKE_CURRENT_SOURCE_DIR}/swpycv/libswpycv.so  ${CMAKE_CURRENT_SOURCE_DIR}/swpycv/libswpycv.so.${SWPYCV_SOVERSION})
+  COMMAND ln -sf ${CMAKE_CURRENT_SOURCE_DIR}/swpycv/swpycv.so  ${CMAKE_CURRENT_SOURCE_DIR}/swpycv/swpycv.so.${SWPYCV_SOVERSION})
 
 install(CODE "execute_process( COMMAND bash \"${CMAKE_CURRENT_SOURCE_DIR}\"/buildscript.sh \"${CMAKE_CURRENT_SOURCE_DIR}\" ${PYTHON_EXECUTABLE} install )" )
