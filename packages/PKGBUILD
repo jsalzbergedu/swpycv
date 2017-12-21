@@ -9,7 +9,7 @@ url="http://www.ncsurobotics.com/"
 # ¯\_(ツ)_/¯
 license=('APACHE')
 
-pkgdesc='Basic data structures and utilities for seawolf.'
+pkgdesc='Helper routines for interfacing C libraries with ctypes that use OpenCV'
 source=('git+https://github.com/jsalzbergedu/swpycv.git#branch=cmake-and-clang')
 makedepends=('git' 'cmake' 'ninja' 'python2' 'opencv')
 md5sums=('SKIP')

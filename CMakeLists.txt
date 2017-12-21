@@ -5,7 +5,6 @@ find_package(PythonInterp REQUIRED)
 find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 
-
 find_package(OpenCV REQUIRED)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenCV_CFLAGS}" )
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D_GNU_SOURCE")
@@ -13,8 +12,17 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D_GNU_SOURCE")
 add_library(swpycv SHARED swpycv.c)
 target_link_libraries(swpycv ${OpenCV_LIBS})
 
+
+set(SWPYCV_VERSION "0.1")
+set(SWPYCV_SOVERSION 0)
+set_target_properties(swpycv PROPERTIES VERSION ${SWPYCV_VERSION})
+set_target_properties(swpycv PROPERTIES SOVERSION ${SWPYCV_SOVERSION})
+
 add_custom_target(cp_lib ALL
   COMMAND cp -f ${CMAKE_BINARY_DIR}/libswpycv.so ${CMAKE_CURRENT_SOURCE_DIR}/swpycv/
   DEPENDS swpycv)
+
+add_custom_target(link_lib ALL
+  COMMAND ln -sf ${CMAKE_CURRENT_SOURCE_DIR}/swpycv/libswpycv.so  ${CMAKE_CURRENT_SOURCE_DIR}/swpycv/libswpycv.so.${SWPYCV_SOVERSION})
 
 install(CODE "execute_process( COMMAND bash \"${CMAKE_CURRENT_SOURCE_DIR}\"/buildscript.sh \"${CMAKE_CURRENT_SOURCE_DIR}\" ${PYTHON_EXECUTABLE} install )" )
